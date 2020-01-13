@@ -15,25 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, Input, OnInit } from '@angular/core';
 
+/**
+ * Komponente f&uuml;r das Tag <code>hs-details-schlagwoerter</code>
+ */
 @Component({
-    selector: 'hs-home',
-    template: `
-        <h1 class="display-1 mt-4">Willkommen in der JBGB-Kundenbibliothek!</h1>
-        <h3 class="display-4 mt-1">
-            Schauen Sie sich gerne nach interessanten Kundenn um.
-        </h3>
-        <router-outlet></router-outlet>
-    `,
+    selector: 'hs-details-schlagwoerter',
+    templateUrl: 'details-schlagwoerter.component.html',
 })
-export class HomeComponent implements OnInit {
-    constructor(private readonly title: Title) {
-        console.log('HomeComponent.constructor()');
-    }
+export class DetailsSchlagwoerterComponent implements OnInit {
+    // <hs-schlagwoerter [values]="kunde.schlagwoerter">
+    // Decorator fuer ein Attribut. Siehe InputMetadata
+    @Input()
+    readonly values!: Array<string>;
 
     ngOnInit() {
-        this.title.setTitle('JBGB-Kundenbibliothek');
+        console.log('DetailsSchlagwoerterComponent.values=', this.values);
     }
 }

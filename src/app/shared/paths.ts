@@ -18,13 +18,14 @@
 /**
  * Pfade an der Weboberflaeche
  */
-export const HOME_PATH = 'home';
+export const HOME_PATH = '/';
+export const LOGIN_PATH = '/login';
 
 // siehe proxy.conf.json und angular.json
 const SCHEME = 'https';
-const PORT = 443;
+const PORT = 443; //4200
 const SERVERNAME = 'localhost';
-const BASE_PATH = '';
+const BASE_PATH = '/rest';
 
 // CORS statt Proxy:
 // const SCHEME = 'https'
@@ -38,6 +39,6 @@ const BASE_PATH = '';
 export const BASE_URI = `${SCHEME}://${SERVERNAME}:${PORT}${BASE_PATH}`;
 
 /**
- * Pfad beim REST-Server fuer spiele
+ * Pfad beim REST-Server fuer kunden
  */
-export const SPIELE_PATH_REST = '/';
+export const KUNDEN_PATH_REST = '';

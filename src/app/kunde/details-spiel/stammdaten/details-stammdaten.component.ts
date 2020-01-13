@@ -15,25 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, Input, OnInit } from '@angular/core';
+import { Kunde } from '../../shared/kunde';
 
+/**
+ * Komponente f&uuml;r das Tag <code>hs-stammdaten</code>
+ */
 @Component({
-    selector: 'hs-home',
-    template: `
-        <h1 class="display-1 mt-4">Willkommen in der JBGB-Kundenbibliothek!</h1>
-        <h3 class="display-4 mt-1">
-            Schauen Sie sich gerne nach interessanten Kundenn um.
-        </h3>
-        <router-outlet></router-outlet>
-    `,
+    selector: 'hs-details-stammdaten',
+    templateUrl: './details-stammdaten.component.html',
 })
-export class HomeComponent implements OnInit {
-    constructor(private readonly title: Title) {
-        console.log('HomeComponent.constructor()');
-    }
+export class DetailsStammdatenComponent implements OnInit {
+    // Property Binding: <hs-details-stammdaten [kunde]="...">
+    // Decorator fuer ein Attribut. Siehe InputMetadata
+    @Input()
+    kunde!: Kunde;
 
     ngOnInit() {
-        this.title.setTitle('JBGB-Kundenbibliothek');
+        console.log('DetailsStammdatenComponent.kunde=', this.kunde);
     }
 }

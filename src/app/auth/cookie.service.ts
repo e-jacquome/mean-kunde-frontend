@@ -110,8 +110,8 @@ export class CookieService {
         // Kein Zugriff mit JavaScript; Uebertragung nur mit HTTPS
         // cookieStr += 'HttpOnly; Secure;'
 
-        // Uebertragung nur mit HTTPS
-        cookieStr += 'Secure;';
+        // Uebertragung nur mit HTTPS -- Auskommentiert, da http genutzt.
+        // cookieStr += 'Secure;';
 
         // Schutz vor XSS
         cookieStr += 'SameSite=Strict';

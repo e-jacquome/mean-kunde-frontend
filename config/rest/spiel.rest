@@ -20,76 +20,76 @@ Content-Type: application/x-www-form-urlencoded
 username=admin&password=FALSCH
 
 ### Suche alle Buecher
-https://{{host}}/spiele
+https://{{host}}/kunden
 
 ### Suche mit vorhandener Buch-ID
-https://{{host}}/spiele/00000000-0000-0000-0000-000000000001
+https://{{host}}/kunden/00000000-0000-0000-0000-000000000001
 
 ### Suche mit vorhandener Buch-ID und Versionsnummer
-https://{{host}}/spiele/00000000-0000-0000-0000-000000000001
+https://{{host}}/kunden/00000000-0000-0000-0000-000000000001
 If-None-Match: 0
 
 ### Optionen zu Buch-ID
-OPTIONS https://{{host}}/spiele/00000000-0000-0000-0000-000000000001
+OPTIONS https://{{host}}/kunden/00000000-0000-0000-0000-000000000001
 
 ### Suche mit ungueltiger Buch-ID
-https://{{host}}/spiele/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY
+https://{{host}}/kunden/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY
 
 ### Suche mit nicht-vorhandener Buch-ID
-https://{{host}}/spiele/99999999-9999-9999-9999-999999999999
+https://{{host}}/kunden/99999999-9999-9999-9999-999999999999
 
 ### Suche mit vorhandenem Titel
-https://{{host}}/spiele?titel=a
+https://{{host}}/kunden?titel=a
 
 ### Suche mit vorhandenen Schlagwoertern
-https://{{host}}/spiele?solo=true&team=true
+https://{{host}}/kunden?solo=true&team=true
 
 ### Suche mit gueltiger Buchart
-https://{{host}}/spiele?art=KARTEN
+https://{{host}}/kunden?art=KARTEN
 
 ### Suche mit gueltigem Rating
-https://{{host}}/spiele?rating=1
+https://{{host}}/kunden?rating=1
 
 ### Suche lieferbare Buecher
-https://{{host}}/spiele?lieferbar=true
+https://{{host}}/kunden?lieferbar=true
 
 ### Neues Buch anlegen
-POST https://{{host}}/spiele
+POST https://{{host}}/kunden
 Content-Type: application/json
 Authorization: {{token}}
 
-< ./config/rest/spiel-neu.json
+< ./config/rest/kunde-neu.json
 
 ### Neues Buch mit ungueltigen Daten anlegen
-POST https://{{host}}/spiele
+POST https://{{host}}/kunden
 Content-Type: application/json
 Authorization: {{token}}
 
-< ./config/rest/spiel-neu-invalid.json
+< ./config/rest/kunde-neu-invalid.json
 
 ### Vorhandenes Buch aktualisieren
-PUT https://{{host}}/spiele/00000000-0000-0000-0000-000000000003
+PUT https://{{host}}/kunden/00000000-0000-0000-0000-000000000003
 Content-Type: application/json
 Authorization: {{token}}
 If-Match: 0
 
-< ./config/rest/spiel-3-put.json
+< ./config/rest/kunde-3-put.json
 
 ### Vorhandenes Buch *OHNE* Versionsnummer aktualisieren
-PUT https://{{host}}/spiele/00000000-0000-0000-0000-000000000003
+PUT https://{{host}}/kunden/00000000-0000-0000-0000-000000000003
 Content-Type: application/json
 Authorization: {{token}}
 
-< ./config/rest/spiel-3-put.json
+< ./config/rest/kunde-3-put.json
 
 ### Vorhandenes Buch mit ungueltigen Daten aktualisieren
-PUT https://{{host}}/spiele/00000000-0000-0000-0000-000000000003
+PUT https://{{host}}/kunden/00000000-0000-0000-0000-000000000003
 Content-Type: application/json
 Authorization: {{token}}
 If-Match: 0
 
-< ./config/rest/spiel-3-put-invalid.json
+< ./config/rest/kunde-3-put-invalid.json
 
 ### Loeschen eines vorhandenen Buches
-DELETE https://{{host}}/spiele/00000000-0000-0000-0000-000000000005
+DELETE https://{{host}}/kunden/00000000-0000-0000-0000-000000000005
 Authorization: {{token}}

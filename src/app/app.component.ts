@@ -44,21 +44,21 @@ import { Component, VERSION } from '@angular/core';
     // durch das Tag <hs-app> in index.html, d.h. CSS-Selector wird spezifiziert
     // Schreibweise innerhalb von HTML:         kebab-case
     // Schreibweise innerhalb von TypeScript:   CamelCase
-    // Beispiel:
+    // Beikunde:
     //   <hs-root>
     //       <hs-header>
     //           ...
     //       </hs-header>
     //       <hs-main>
     //           <router-outlet>
-    //               <hs-suche-spiele>
+    //               <hs-suche-kunden>
     //                   <hs-suchformular>
     //                       ...
     //                   </hs-suchformular>
     //                   <hs-suchergebnis>
     //                       ...
     //                   </hs-suchergebnis>
-    //               </hs-suche-spiele>
+    //               </hs-suche-kunden>
     //           <router-outlet>
     //       </hs-main>
     //   </hs-root>

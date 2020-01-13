@@ -15,25 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
+/**
+ * Komponente mit dem Tag &lt;hs-create-lieferbar&gt;, um das Erfassungsformular
+ * f&uuml;r ein neues Kunde zu realisieren.
+ */
 @Component({
-    selector: 'hs-home',
-    template: `
-        <h1 class="display-1 mt-4">Willkommen in der JBGB-Kundenbibliothek!</h1>
-        <h3 class="display-4 mt-1">
-            Schauen Sie sich gerne nach interessanten Kundenn um.
-        </h3>
-        <router-outlet></router-outlet>
-    `,
+    selector: 'hs-create-lieferbar',
+    templateUrl: './create-lieferbar.component.html',
 })
-export class HomeComponent implements OnInit {
-    constructor(private readonly title: Title) {
-        console.log('HomeComponent.constructor()');
-    }
+export class CreateLieferbarComponent implements OnInit {
+    @Input()
+    readonly form!: FormGroup;
+
+    readonly lieferbar = new FormControl(false);
 
     ngOnInit() {
-        this.title.setTitle('JBGB-Kundenbibliothek');
+        console.log('CreateLieferbarComponent.ngOnInit');
+        // siehe formControlName innerhalb @Component({templateUrl: ...})
+        this.form.addControl('lieferbar', this.lieferbar);
     }
 }

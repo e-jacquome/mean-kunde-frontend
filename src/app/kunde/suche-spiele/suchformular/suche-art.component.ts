@@ -11,29 +11,26 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy oSf the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { KundeArt } from '../../shared/kunde';
+import { Component } from '@angular/core';
+import { fadeIn } from '../../../shared';
 
+/**
+ * Komponente f&uuml;r das Tag <code>hs-suche-art</code>
+ */
 @Component({
-    selector: 'hs-home',
-    template: `
-        <h1 class="display-1 mt-4">Willkommen in der JBGB-Kundenbibliothek!</h1>
-        <h3 class="display-4 mt-1">
-            Schauen Sie sich gerne nach interessanten Kundenn um.
-        </h3>
-        <router-outlet></router-outlet>
-    `,
+    selector: 'hs-suche-art',
+    templateUrl: './suche-art.component.html',
+    animations: [fadeIn],
 })
-export class HomeComponent implements OnInit {
-    constructor(private readonly title: Title) {
-        console.log('HomeComponent.constructor()');
-    }
+export class SucheArtComponent {
+    art: KundeArt | '' = '';
 
-    ngOnInit() {
-        this.title.setTitle('JBGB-Kundenbibliothek');
+    constructor() {
+        console.log('SucheArtComponent.constructor()');
     }
 }

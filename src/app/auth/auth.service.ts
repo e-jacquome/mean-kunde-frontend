@@ -1,27 +1,9 @@
-/*
- * Copyright (C) 2016 - present Juergen Zimmermann, Hochschule Karlsruhe
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
+import { BasicAuthService } from './basic-auth.service';
 import { CookieService } from './cookie.service';
 import { Injectable } from '@angular/core';
-import { JwtService } from './jwt.service';
 import { Subject } from 'rxjs';
-import { BasicAuthService } from './basic-auth.service';
 
-// export const ROLLE_ADMIN = 'admin';
+// export const ROLLE_ADMIN = 'admin'
 // Spring Security:
 export const ROLLE_ADMIN = 'ROLE_ADMIN';
 
@@ -29,14 +11,14 @@ export const ROLLE_ADMIN = 'ROLE_ADMIN';
 export class AuthService {
     // Subject statt Observable:
     // in login() und logout() wird Subject.next() aufgerufen
-    /* eslint-disable no-underscore-dangle */
+    // tslint:disable-next-line:variable-name
     private readonly _isLoggedInSubject = new Subject<boolean>();
+    // tslint:disable-next-line:variable-name
     private readonly _rollenSubject = new Subject<Array<string>>();
 
     constructor(
-        private readonly jwtService: JwtService,
-        private readonly cookieService: CookieService,
         private readonly basicAuthService: BasicAuthService,
+        private readonly cookieService: CookieService,
     ) {
         console.log('AuthService.constructor()');
     }
@@ -47,27 +29,16 @@ export class AuthService {
      * @return void
      */
     async login(username: string | undefined, password: string | undefined) {
-        console.log(
-            `AuthService.login(): username=${username}, password=${password}`,
-        );
         let rollen: Array<string> = [];
         try {
-            const rollenString = await this.basicAuthService.login(
-                username,
-                password,
-            );
-            console.log(
-                'AuthService.login(): Rollen als String: ',
-                rollenString,
-            );
-            rollen = rollenString.split(',');
+            // this.basicAuthService.login(username, password)
+            rollen = await this.basicAuthService.login(username, password);
             console.log('AuthService.login()', rollen);
             this.isLoggedInSubject.next(true);
         } catch (e) {
             console.warn('AuthService.login(): Exception', e);
             this.isLoggedInSubject.next(false);
         }
-
         this.rollenSubject.next(rollen);
     }
 
@@ -82,9 +53,12 @@ export class AuthService {
     }
 
     get isLoggedInSubject() {
+        // eslint-disable-next-line no-underscore-dangle
         return this._isLoggedInSubject;
     }
+
     get rollenSubject() {
+        // eslint-disable-next-line no-underscore-dangle
         return this._rollenSubject;
     }
 
@@ -112,7 +86,6 @@ export class AuthService {
         if (rolesStr === undefined) {
             return false;
         }
-
         // z.B. ['admin', 'mitarbeiter']
         const rolesArray = rolesStr.split(',');
         return rolesArray !== undefined && rolesArray.includes(ROLLE_ADMIN);

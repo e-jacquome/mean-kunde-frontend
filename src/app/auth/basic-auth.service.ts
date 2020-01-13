@@ -46,23 +46,21 @@ export class BasicAuthService {
         console.log(
             `BasicAuthService.login(): username=${username}, password=${password}`,
         );
-        const loginUri = `${BASE_URI}/rest/auth/rollen`;
+        const loginUri = `${BASE_URI}/auth/rollen`;
         console.log(`BasicAuthService.login(): loginUri=${loginUri}`);
 
         const base64 = window.btoa(`${username}:${password}`);
         const basicAuth = `Basic ${base64}`;
 
         // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-        const headers = new Headers();
-        headers.append('Authorization', basicAuth);
         const request = new Request(loginUri, {
             method: 'GET',
-            headers,
+            headers: { Authorization: basicAuth },
         });
 
         let response: Response | undefined;
         try {
-            response = await fetch(request);
+            response = await fetch(request, { credentials: 'omit' });
             // Optional catch binding parameters
         } catch {
             console.error(
@@ -89,7 +87,9 @@ export class BasicAuthService {
             // Base64-String fuer 1 Tag speichern
             basicAuth,
             roles,
+            // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+            new Date().getTime() + 24 * 60 * 60 * 1000,
         );
-        return roles;
+        return json;
     }
 }
